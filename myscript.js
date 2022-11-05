@@ -44,7 +44,8 @@ function game() {
         } 
     }
 
-    let results = "Player Score - " + playerScore + ':' + computerScore + " - Computer Score";  
+    let results = "Player Score - " + playerScore + ':' + computerScore + 
+                  " - Computer Score";  
 
     if (playerScore > computerScore) {
         return "You Win! Results: " + results;
