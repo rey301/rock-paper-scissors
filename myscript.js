@@ -33,13 +33,13 @@ function game() {
     let computerScore = 0;
     for(let i = 0; i < 5; i++) {
         let playerSelection = prompt('Choose either Rock, Paper, or Scissors');
-        let roundResult = playRound(playerSelection, getComputerChoice);
+        let roundResult = playRound(playerSelection, getComputerChoice());
 
-        console.log(roundResult[4]);
+        console.log(roundResult);
 
-        if (roundResult[4] == 'W') {
+        if (roundResult[4] === 'W') {
             playerScore++;
-        } else if (roundResult[4]) {
+        } else if (roundResult[4] === 'L') {
             computerScore++;
         } 
     }
@@ -57,7 +57,7 @@ function game() {
 
 const playerSelection = "RoCk";
 const computerSelection = getComputerChoice();
-console.log("Computer choice: " + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+// console.log("Computer choice: " + computerSelection);
+// console.log(playRound(playerSelection, computerSelection));
 
 console.log(game());
