@@ -4,26 +4,31 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    let playerSelection = playerSelection.toLowerCase();
-    if (playerSelection === "rock") {
+    let lowerPlayerSelection = playerSelection.toLowerCase();
+    if (lowerPlayerSelection === computerSelection) {
+        return "It's a tie!";
+    } else if (lowerPlayerSelection === "rock") {
         if (computerSelection === "scissors") {
             return "You Win! Rock beats Scissors";
         } else if (computerSelection === "paper") {
             return "You lose! Paper beats Rock";
         }
-    } else if (playerSelection === "paper") {
+    } else if (lowerPlayerSelection === "paper") {
         if (computerSelection === "rock") {
             return "You Win! Paper beats Rock";
         } else if (computerSelection === "scissors") {
             return "You lose! Scissors beats Paper";
         }
-    } else if (playerSelection === "scissors") {
+    } else if (lowerPlayerSelection === "scissors") {
         if (computerSelection === "paper") {
             return "You Win! Scissors beats Paper";
         } else if (computerSelection === "rock") {
             return "You lose! Rock beats Scissors";
         }
-    } else {
-        return "It's a tie!";
-    }
+    } 
 }
+
+const playerSelection = "RoCk";
+const computerSelection = getComputerChoice();
+console.log("Computer choice: " + computerSelection);
+console.log(playRound(playerSelection, computerSelection));
