@@ -28,12 +28,14 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
-let playerSelection = '';
-
 const btns = document.querySelectorAll('button');
 btns.forEach(button => {
     button.addEventListener('click', e => {
-        playerSelection = e.target.getAttribute('class');
+        const playerSelection = e.target.getAttribute('class');
+        const computerSelection = getComputerChoice();
+        
+        const result = document.querySelector('.result');
+        result.textContent = playRound(playerSelection, computerSelection);
     });
 });
 
@@ -42,7 +44,7 @@ btns.forEach(button => {
 //     playerSelection = 'rock';
 // });
 
-const computerSelection = getComputerChoice();
+
 // console.log("Computer choice: " + computerSelection);
 // console.log(playRound(playerSelection, computerSelection));
 
