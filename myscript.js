@@ -32,10 +32,22 @@ const choices = document.querySelector('.choices').childNodes;
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
-        const playerSelection = e.target.getAttribute('class');
+        /* 
+        *
+        using split function to get the first word
+        as class contains 'hover-over' in the class list 
+        */
+        const playerSelection = e.target.getAttribute('class').split(' ')[0];
         const computerSelection = getComputerChoice();
         
         const result = document.querySelector('.result');
         result.textContent = playRound(playerSelection, computerSelection);
     });
+
+    choice.addEventListener('mouseover', e => {
+        choice.classList.toggle('hover-over');
+    });
+
+    choice.addEventListener('mouseleave', e => 
+        e.target.classList.remove('hover-over'));
 });
