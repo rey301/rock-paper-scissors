@@ -38,14 +38,3 @@ btns.forEach(button => {
         result.textContent = playRound(playerSelection, computerSelection);
     });
 });
-
-// const rockBtn = document.querySelector('.rockButton');
-// rockBtn.addEventListener('click', e => {
-//     playerSelection = 'rock';
-// });
-
-
-// console.log("Computer choice: " + computerSelection);
-// console.log(playRound(playerSelection, computerSelection));
-
-// console.log(game());
