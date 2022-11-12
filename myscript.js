@@ -28,9 +28,10 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
-const btns = document.querySelectorAll('button');
-btns.forEach(button => {
-    button.addEventListener('click', e => {
+const choices = document.querySelector('.choices').childNodes;
+
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
         const playerSelection = e.target.getAttribute('class');
         const computerSelection = getComputerChoice();
         

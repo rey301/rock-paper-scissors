@@ -5,31 +5,28 @@ body {
     gap: 20px;
 }
 
-/* Buttons */
-.buttons {
+/* Choices */
+.choices {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
 
-    .buttons > * {
-        height: 200px;
+    .choices > * {
+        flex: 0 1 200px;
+    }
+
+    .choices .rock {
         width: 200px;
-        background-size: cover;
-        background-color: rgba(0, 0, 0, 0);
-        border: none;
     }
 
-    .buttons .rock {
-        background-image: url(./images/rock.png);
+    .choices .paper {
+        width: 200px;
     }
 
-    .buttons .paper {
-        background-image: url(./images/paper.png);
-    }
-
-    .buttons .scissors {
-        background-image: url(./images/scissors.png);
+    .choices .scissors {
+        width: 200px;
     }
 
 /* button {
