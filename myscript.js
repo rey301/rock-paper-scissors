@@ -38,8 +38,6 @@ choices.forEach(choice => {
         using split function to get the first word
         as class contains 'hover-over' in the class list 
         */    
-        chosen = true;         
-
         const playerSelection = e.target.getAttribute('class').split(' ')[0];
         const computerSelection = getComputerChoice();
 
@@ -57,12 +55,10 @@ choices.forEach(choice => {
     });
 
     choice.addEventListener('mouseover', e => {
-        if (chosen) return;
         choice.classList.toggle('hover-over');
     });
 
     choice.addEventListener('mouseleave', e => {
-        if (chosen) return;
         e.target.classList.remove('hover-over')
     });
 });
