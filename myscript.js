@@ -9,7 +9,7 @@ function playRound(playerSelection, computerSelection) {
         return "It's a tie!";
     } else if (lowerPlayerSelection === "rock") {
         if (computerSelection === "scissors") {
-            return "You Win! Rock beats Scissors";
+            return "You Win! \n You chose: Rock \n CPU chose: Paper";
         } else if (computerSelection === "paper") {
             return "You Lose! Paper beats Rock";
         }
@@ -29,6 +29,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 const choices = document.querySelector('.choices').childNodes;
+let chosen = false;
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
@@ -36,18 +37,32 @@ choices.forEach(choice => {
         *
         using split function to get the first word
         as class contains 'hover-over' in the class list 
-        */
+        */    
+        chosen = true;         
+
         const playerSelection = e.target.getAttribute('class').split(' ')[0];
         const computerSelection = getComputerChoice();
+
+        console.log(computerSelection);
         
+        // let notChosen = document.querySelectorAll(
+        //     `.choices > img:not(.${playerSelection})`
+        //     );
+        
+        // notChosen.forEach(item => item.remove()); // remove all items from the
+        //                                           // page except chosen one
+                                                  
         const result = document.querySelector('.result');
         result.textContent = playRound(playerSelection, computerSelection);
     });
 
     choice.addEventListener('mouseover', e => {
+        if (chosen) return;
         choice.classList.toggle('hover-over');
     });
 
-    choice.addEventListener('mouseleave', e => 
-        e.target.classList.remove('hover-over'));
+    choice.addEventListener('mouseleave', e => {
+        if (chosen) return;
+        e.target.classList.remove('hover-over')
+    });
 });

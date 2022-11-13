@@ -3,7 +3,30 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    background-color: rgb(255, 215, 115);
+    font-family: futura;
+    text-align: center;
 }
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 5px;
+}
+
+    .header .title {
+        font-size: 30px;
+    }
+
+    .header .stats
+    {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        font-size: 24px;
+    }
 
 /* Choices */
 .choices {
@@ -15,7 +38,9 @@ body {
 
     .choices > * {
         flex: 0 1 200px;
-        transition: all .07s ease;
+        transition: all .09s ease;
+        padding: 0;
+        border-radius: 100px;
     }
 
     .choices .rock {
@@ -31,9 +56,8 @@ body {
     }
 
     .hover-over {
-        transform: scale(1.1);
+        transform: scale(1.15);
         border-color: black;
-        box-shadow: 0 0 1rem black;
     }
 
 /* button {
