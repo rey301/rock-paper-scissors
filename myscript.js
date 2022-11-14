@@ -51,51 +51,60 @@ function newResult(imageName, selection, user, score) {
     }
 }
 
-const choices = document.querySelector('.choices').childNodes;
+const choicesChildren = document.querySelector('.choices').childNodes;
 let playerScore = 0;
 let compScore = 0;
 let round = 0;
-const resultText = document.createElement('result-text');
 
-choices.forEach(choice => {
-    choice.addEventListener('click', e => {
-        /* 
-        using split function to get the first word
-        as class contains 'hover-over' in the class list 
-        */    
-        const playerSelection = e.target.getAttribute('class').split(' ')[0];
-       
-        const computerSelection = getComputerChoice(); 
-        
-        result = playRound(playerSelection, computerSelection);
+const resultText = document.createElement('div');
+resultText.classList.add('result-text');
 
-        if (result === 'player') {
-            playerScore += 1;
-        } else if (result === 'comp') {
-            compScore += 1;
-        } 
-
-        newResult('player-img', playerSelection, 'player', playerScore);
-        newResult('comp-img', computerSelection, 'comp', compScore);
-
-        round += 1;
-        roundText = document.querySelector('.round');
-        roundText.textContent = `Round: ${round}`;
-
-        if (playerScore === 5) {  
-            resultText.textContent = "You Won! Congrats!";
-            document.querySelector('body').appendChild(resultText);
-        } else if (compScore === 5) { 
-            resultText.textContent = "You Lost! Better luck next time...";
-            document.querySelector('body').appendChild(resultText);
-        }
-    });
-
+choicesChildren.forEach(choice => {
     choice.addEventListener('mouseover', e => {
         choice.classList.toggle('hover-over');
     });
 
     choice.addEventListener('mouseleave', e => {
         e.target.classList.remove('hover-over')
+    });
+
+    choice.addEventListener('click', e => {
+        if (playerScore === 5) {  
+            resultText.textContent = "You Won! Congrats!";
+            document.querySelector('body').appendChild(resultText);
+            const oldDiv = document.querySelector('.choices');
+            const newDiv = oldDiv.cloneNode(true);
+            oldDiv.parentNode.replaceChild(newDiv, oldDiv);
+
+        } else if (compScore === 5) { 
+            resultText.textContent = "You Lost! Better luck next time...";
+            document.querySelector('body').appendChild(resultText);
+            const oldDiv = document.querySelector('.choices');
+            const newDiv = oldDiv.cloneNode(true);
+            oldDiv.parentNode.replaceChild(newDiv, oldDiv);
+        } else {
+            /* 
+            using split function to get the first word
+            as class contains 'hover-over' in the class list 
+            */    
+            const playerSelection = e.target.getAttribute('class').split(' ')[0];
+        
+            const computerSelection = getComputerChoice(); 
+            
+            result = playRound(playerSelection, computerSelection);
+
+            if (result === 'player') {
+                playerScore += 1;
+            } else if (result === 'comp') {
+                compScore += 1;
+            } 
+
+            newResult('player-img', playerSelection, 'player', playerScore);
+            newResult('comp-img', computerSelection, 'comp', compScore);
+
+            round += 1;
+            roundText = document.querySelector('.round');
+            roundText.textContent = `Round: ${round}`;
+        }
     });
 });

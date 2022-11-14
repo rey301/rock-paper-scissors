@@ -25,7 +25,7 @@ body {
         display: flex;
         justify-content: center;
         gap: 15px;
-        font-size: 24px;
+        font-size: 20px;
     }
 
 /* Choices */
@@ -66,19 +66,24 @@ body {
     gap: 25px;
 }
 
-.current-scores > * {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+    .current-scores > * {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
-.player-img {
-    box-shadow: 0 0 1rem white;
-    border-radius: 300px;
-}
+    .player-img {
+        border-radius: 300px;
+    }
 
-.comp-img {
-    transform: scale(-1, 1);
-    box-shadow: 0 0 1rem red;
-    border-radius: 300px;
+    .comp-img {
+        transform: scale(-1, 1);
+        border-radius: 300px;
+    }
+
+
+.result-text {
+    font-size: 24px;
+    color: white;
+    text-shadow: 0 0 .1rem black;
 }
