@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    background-color: rgb(255, 215, 115);
+    background-color: rgb(244, 207, 114);
     font-family: futura;
     text-align: center;
 }
@@ -60,7 +60,7 @@ body {
         border-color: black;
     }
 
-/* Results */
+/* Current Scores */
 .current-scores {
     display: flex;
     gap: 25px;
@@ -73,17 +73,46 @@ body {
     }
 
     .player-img {
+        width: 200px;
         border-radius: 300px;
     }
 
     .comp-img {
+        width: 200px;
         transform: scale(-1, 1);
         border-radius: 300px;
     }
 
-
-.result-text {
-    font-size: 24px;
-    color: white;
-    text-shadow: 0 0 .1rem black;
+/* Results */
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
+
+    .result-text {
+        font-size: 24px;
+        color: white;
+    }
+
+    .reset-button {
+        padding: 7px 12px;
+        font-family: futura;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        color: #fff;
+        background-color: rgb(240, 137, 137);
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px #999;
+    }
+
+    .reset-button:hover {background-color: rgb(219, 45, 45)}
+
+    .reset-button:active {
+        background-color: rgb(219, 45, 45);
+        box-shadow: 0 2px rgb(134, 27, 27);
+        transform: translateY(3px);
+    }

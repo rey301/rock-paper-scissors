@@ -60,6 +60,7 @@ const resultText = document.createElement('div');
 resultText.classList.add('result-text');
 
 const resetBtn = document.createElement('button');
+resetBtn.classList.add('reset-button');
 resetBtn.textContent = 'Play Again?';
 
 resetBtn.addEventListener('click', e => {
