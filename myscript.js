@@ -28,30 +28,38 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
+function newImage(imageName, selection) {        
+    let newImage;
+    
+    if (document.querySelector(`.${imageName}`) !== null) {
+        newImage = document.querySelector(`.${imageName}`);
+        newImage.setAttribute('src', `./images/${selection}.png`);
+    } else {
+        newImage = document.createElement('img');
+        newImage.classList.add(imageName);
+        newImage.src = `./images/${selection}.png`;
+        document.querySelector('.results').appendChild(newImage);
+    }
+}
+
 const choices = document.querySelector('.choices').childNodes;
 let chosen = false;
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
         /* 
-        *
         using split function to get the first word
         as class contains 'hover-over' in the class list 
         */    
         const playerSelection = e.target.getAttribute('class').split(' ')[0];
-        const computerSelection = getComputerChoice();
+        newImage('player-img', playerSelection);
 
-        console.log(computerSelection);
+        const computerSelection = getComputerChoice();
+        newImage('comp-img', computerSelection);
         
-        // let notChosen = document.querySelectorAll(
-        //     `.choices > img:not(.${playerSelection})`
-        //     );
-        
-        // notChosen.forEach(item => item.remove()); // remove all items from the
-        //                                           // page except chosen one
-                                                  
-        const result = document.querySelector('.result');
+        const result = document.querySelector('.result-text');
         result.textContent = playRound(playerSelection, computerSelection);
+        console.log(result.textContent);
     });
 
     choice.addEventListener('mouseover', e => {

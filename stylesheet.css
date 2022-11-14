@@ -60,13 +60,7 @@ body {
         border-color: black;
     }
 
-/* button {
-    background-color: #3882F6;
-    border: none;
-    color: #F9FAF8;
-    text-decoration: none;
-    cursor: pointer;
-    padding: 30px 30px;
-    font-weight: bold;
-    border-radius: 6px;
-} */
+/* Results */
+.comp-img {
+    transform: scale(-1, 1);
+}
