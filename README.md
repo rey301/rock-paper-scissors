@@ -1,2 +1,2 @@
-# odin-rock-paper-scissors
-Basic rock paper scissor project 
+# rock-paper-scissors
+Basic rock paper scissors web application
