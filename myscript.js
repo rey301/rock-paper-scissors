@@ -55,6 +55,7 @@ const choices = document.querySelector('.choices').childNodes;
 let playerScore = 0;
 let compScore = 0;
 let round = 0;
+const resultText = document.createElement('result-text');
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
@@ -80,6 +81,14 @@ choices.forEach(choice => {
         round += 1;
         roundText = document.querySelector('.round');
         roundText.textContent = `Round: ${round}`;
+
+        if (playerScore === 5) {  
+            resultText.textContent = "You Won! Congrats!";
+            document.querySelector('body').appendChild(resultText);
+        } else if (compScore === 5) { 
+            resultText.textContent = "You Lost! Better luck next time...";
+            document.querySelector('body').appendChild(resultText);
+        }
     });
 
     choice.addEventListener('mouseover', e => {
