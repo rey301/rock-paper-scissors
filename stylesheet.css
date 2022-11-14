@@ -61,6 +61,10 @@ body {
     }
 
 /* Results */
+.results {
+    display: flex;
+}
+
 .comp-img {
     transform: scale(-1, 1);
 }
