@@ -59,26 +59,37 @@ let round = 0;
 const resultText = document.createElement('div');
 resultText.classList.add('result-text');
 
+const resetBtn = document.createElement('button');
+resetBtn.textContent = 'Play Again?';
+
+resetBtn.addEventListener('click', e => {
+    window.location.reload();
+});
+
 choicesChildren.forEach(choice => {
     choice.addEventListener('mouseover', e => {
-        choice.classList.toggle('hover-over');
+        e.target.classList.add('hover-over');
     });
 
     choice.addEventListener('mouseleave', e => {
         e.target.classList.remove('hover-over')
     });
-
+    
     choice.addEventListener('click', e => {
         if (playerScore === 5) {  
             resultText.textContent = "You Won! Congrats!";
-            document.querySelector('body').appendChild(resultText);
+            document.querySelector('.results').appendChild(resultText);
+            document.querySelector('.results').appendChild(resetBtn);
+            e.target.classList.remove('hover-over');
             const oldDiv = document.querySelector('.choices');
             const newDiv = oldDiv.cloneNode(true);
             oldDiv.parentNode.replaceChild(newDiv, oldDiv);
-
+            
         } else if (compScore === 5) { 
             resultText.textContent = "You Lost! Better luck next time...";
-            document.querySelector('body').appendChild(resultText);
+            document.querySelector('.results').appendChild(resultText);
+            document.querySelector('.results').appendChild(resetBtn);
+            e.target.classList.remove('hover-over');
             const oldDiv = document.querySelector('.choices');
             const newDiv = oldDiv.cloneNode(true);
             oldDiv.parentNode.replaceChild(newDiv, oldDiv);
