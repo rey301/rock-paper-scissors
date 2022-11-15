@@ -28,27 +28,13 @@ function playRound(playerSelection, computerSelection) {
     } 
 }
 
-function newResult(imageName, selection, user, score) {        
-    let newImage;
-    let scoreText;
-
-    if (document.querySelector(`.${imageName}`) !== null) {
-        scoreText = document.querySelector(`.${user}Score`);
-        scoreText.textContent = score;
-
-        newImage = document.querySelector(`.${imageName}`);
-        newImage.setAttribute('src', `./images/${selection}.png`);
-    } else {
-        scoreText = document.createElement('div');
-        scoreText.classList.add(`${user}Score`);
-        scoreText.textContent = score;
-        document.querySelector(`.${user}`).appendChild(scoreText);
-
-        newImage = document.createElement('img');
-        newImage.classList.add(imageName);
-        newImage.src = `./images/${selection}.png`;
-        document.querySelector(`.${user}`).appendChild(newImage);
-    }
+// updates scores and images
+function updateScore(selection, user, score) {        
+    const scoreDiv = document.querySelector(`.${user}-score`);
+    scoreDiv.textContent = score;
+    
+    const newImage = document.querySelector(`.${user}-img`);
+    newImage.setAttribute('src', `./images/${selection}.png`);
 }
 
 // returns true if game has ended, false otherwise
@@ -61,9 +47,6 @@ function checkScores() {
         }
         document.querySelector('.results').appendChild(resultText);
         document.querySelector('.results').appendChild(resetBtn);
-        const oldDiv = document.querySelector('.choices');
-        const newDiv = oldDiv.cloneNode(true);
-        oldDiv.parentNode.replaceChild(newDiv, oldDiv);
         return true;
     } else {
         return false;
@@ -75,6 +58,29 @@ let playerScore = 0;
 let compScore = 0;
 let round = 0;
 
+// initial scores
+const playerScoreText = document.createElement('div');
+playerScoreText.classList.add(`player-score`);
+playerScoreText.textContent = playerScore;
+document.querySelector('.player').appendChild(playerScoreText);
+
+const compScoreText = document.createElement('div');
+compScoreText.classList.add(`comp-score`);
+compScoreText.textContent = compScore;
+document.querySelector('.comp').appendChild(compScoreText);
+
+// initial images
+const playerImage = document.createElement('img');
+playerImage.classList.add(`player-img`);
+playerImage.src = `./images/rock.png`;
+document.querySelector('.player').appendChild(playerImage);
+
+const compImage = document.createElement('img');
+compImage.classList.add(`comp-img`);
+compImage.src = `./images/rock.png`;
+document.querySelector('.comp').appendChild(compImage);
+
+// result text and button to be revealed after game ends
 const resultText = document.createElement('div');
 resultText.classList.add('result-text');
 
@@ -88,19 +94,20 @@ resetBtn.addEventListener('click', e => {
 
 choicesChildren.forEach(choice => {
     choice.addEventListener('mouseover', e => {
-        e.target.classList.add('hover-over');
+        if (!checkScores()) {
+            e.target.classList.add('hover-over');
+        }
     });
 
     choice.addEventListener('mouseleave', e => {
-        e.target.classList.remove('hover-over')
+        e.target.classList.remove('hover-over');
     });
     
     choice.addEventListener('click', e => {
         if (!checkScores()) {
             /* 
-                using split function to get the first word
-                as class contains 'hover-over' in the class list 
-                repos/rock-paper-scissors/images/paper.png            
+            *  using split function to get the first word
+            *  as class contains 'hover-over' in the class list          
             */    
             const playerSelection = e.target.getAttribute('class')
             .split(' ')[0];
@@ -109,22 +116,22 @@ choicesChildren.forEach(choice => {
 
             result = playRound(playerSelection, computerSelection);
 
+            // update scores
             if (result === 'player') {
-            playerScore += 1;
+                playerScore += 1;
             } else if (result === 'comp') {
-            compScore += 1;
+                compScore += 1;
             } 
 
-            newResult('player-img', playerSelection, 'player', playerScore);
-            newResult('comp-img', computerSelection, 'comp', compScore);
+            updateScore(playerSelection, 'player', playerScore); 
+            updateScore(computerSelection, 'comp', compScore);
 
+            // update round number
             round += 1;
             roundText = document.querySelector('.round');
             roundText.textContent = `Round: ${round}`;
-            
-            if (checkScores()) {
-                e.target.classList.remove('hover-over');
-            }
+
+            checkScores();
         }
     });
 });
