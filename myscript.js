@@ -51,6 +51,25 @@ function newResult(imageName, selection, user, score) {
     }
 }
 
+// returns true if game has ended, false otherwise
+function checkScores() {
+    if (playerScore === 5 || compScore === 5) {  
+        if (playerScore === 5) {
+            resultText.textContent = "You Won! Congrats!";
+        } else {
+            resultText.textContent = "You Lost! Better luck next time...";
+        }
+        document.querySelector('.results').appendChild(resultText);
+        document.querySelector('.results').appendChild(resetBtn);
+        const oldDiv = document.querySelector('.choices');
+        const newDiv = oldDiv.cloneNode(true);
+        oldDiv.parentNode.replaceChild(newDiv, oldDiv);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 const choicesChildren = document.querySelector('.choices').childNodes;
 let playerScore = 0;
 let compScore = 0;
@@ -77,38 +96,23 @@ choicesChildren.forEach(choice => {
     });
     
     choice.addEventListener('click', e => {
-        if (playerScore === 5) {  
-            resultText.textContent = "You Won! Congrats!";
-            document.querySelector('.results').appendChild(resultText);
-            document.querySelector('.results').appendChild(resetBtn);
-            e.target.classList.remove('hover-over');
-            const oldDiv = document.querySelector('.choices');
-            const newDiv = oldDiv.cloneNode(true);
-            oldDiv.parentNode.replaceChild(newDiv, oldDiv);
-            
-        } else if (compScore === 5) { 
-            resultText.textContent = "You Lost! Better luck next time...";
-            document.querySelector('.results').appendChild(resultText);
-            document.querySelector('.results').appendChild(resetBtn);
-            e.target.classList.remove('hover-over');
-            const oldDiv = document.querySelector('.choices');
-            const newDiv = oldDiv.cloneNode(true);
-            oldDiv.parentNode.replaceChild(newDiv, oldDiv);
-        } else {
+        if (!checkScores()) {
             /* 
-            using split function to get the first word
-            as class contains 'hover-over' in the class list 
+                using split function to get the first word
+                as class contains 'hover-over' in the class list 
+                repos/rock-paper-scissors/images/paper.png            
             */    
-            const playerSelection = e.target.getAttribute('class').split(' ')[0];
-        
+            const playerSelection = e.target.getAttribute('class')
+            .split(' ')[0];
+
             const computerSelection = getComputerChoice(); 
-            
+
             result = playRound(playerSelection, computerSelection);
 
             if (result === 'player') {
-                playerScore += 1;
+            playerScore += 1;
             } else if (result === 'comp') {
-                compScore += 1;
+            compScore += 1;
             } 
 
             newResult('player-img', playerSelection, 'player', playerScore);
@@ -117,6 +121,10 @@ choicesChildren.forEach(choice => {
             round += 1;
             roundText = document.querySelector('.round');
             roundText.textContent = `Round: ${round}`;
+            
+            if (checkScores()) {
+                e.target.classList.remove('hover-over');
+            }
         }
     });
 });

@@ -6,6 +6,7 @@ body {
     background-color: rgb(244, 207, 114);
     font-family: futura;
     text-align: center;
+    color: rgb(37, 37, 37);
 }
 
 /* Header */
@@ -92,7 +93,7 @@ body {
 }
 
     .result-text {
-        font-size: 24px;
+        font-size: 20px;
         color: white;
     }
 
