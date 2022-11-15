@@ -1,8 +1,10 @@
+// generates the computer's choice 
 function getComputerChoice() {
     const computerChoice = ["rock", "paper", "scissors"];
     return computerChoice[Math.floor(Math.random() * 3)]
 }
 
+// plays a single round
 function playRound(playerSelection, computerSelection) {
     let lowerPlayerSelection = playerSelection.toLowerCase();
     if (lowerPlayerSelection === computerSelection) {
@@ -53,12 +55,11 @@ function checkScores() {
     }
 }
 
-const choicesChildren = document.querySelector('.choices').childNodes;
+// initial scores and round
+let round = 0;
 let playerScore = 0;
 let compScore = 0;
-let round = 0;
 
-// initial scores
 const playerScoreText = document.createElement('div');
 playerScoreText.classList.add(`player-score`);
 playerScoreText.textContent = playerScore;
@@ -92,6 +93,7 @@ resetBtn.addEventListener('click', e => {
     window.location.reload();
 });
 
+const choicesChildren = document.querySelector('.choices').childNodes;
 choicesChildren.forEach(choice => {
     choice.addEventListener('mouseover', e => {
         if (!checkScores()) {
