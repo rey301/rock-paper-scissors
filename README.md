@@ -1,5 +1,5 @@
-# odin-rock-paper-scissors
-Basic rock paper scissor project 
+# rock-paper-scissors
+Basic rock paper scissor web application
 
 Design UI Requirements:
 - Add images to rock, paper, scissors buttons
